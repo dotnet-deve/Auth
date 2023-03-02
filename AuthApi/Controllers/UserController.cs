@@ -50,6 +50,7 @@ namespace AngularAuthApi.Controllers
             {
                 Token = user.Token,
                 Message = "Login Success !"
+
             });
 
         }
