@@ -2,7 +2,7 @@
 
 namespace AuthApi.Migrations
 {
-    public partial class v3 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

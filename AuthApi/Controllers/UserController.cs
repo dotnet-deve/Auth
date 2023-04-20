@@ -10,7 +10,6 @@ using AuthApi.Context;
 using AuthApi.Helpers;
 using AuthApi.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -26,6 +25,7 @@ namespace AngularAuthApi.Controllers
         {
             _appDbContext = appDbContext;
         }
+       
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
@@ -74,7 +74,7 @@ namespace AngularAuthApi.Controllers
 
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
             userObj.Role = "User";
-            userObj.Token = "";
+            userObj.Token = CreateJwt(userObj);
             await _appDbContext.Users.AddAsync(userObj);
             await _appDbContext.SaveChangesAsync();
 
